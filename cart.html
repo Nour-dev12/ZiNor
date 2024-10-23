@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="cart.js"></script>
+    <title>Zinora</title>
+</head>
+<body>
+    
+    <section id="header">
+        <a href="index.html">
+            <span class="letter">Z</span>
+        </a>
+        <div class="categories">
+            <button class="category-btn">
+                <i class="fa-solid fa-bars"></i> <span>Categories</span>
+            </button>
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="#">Accessories</a>
+                <a href="#">Art & Collectibles</a>
+                <a href="#">Baby</a>
+                <a href="#">Bags & Purses</a>
+                <a href="#">Bath & Beauty</a>
+                <a href="#">Books, Films & Music</a>
+                <a href="">Clothing</a>
+                <a href="">Craft Supplies & Tools</a>
+                <a href="">Electronics & Accessories</a>
+                <a href="">Gifts</a>
+                <a href="#">Home & Living</a>
+                <a href="">Jewellery</a>
+                <a href="">Paper & Party Supplies</a>
+                <a href="">Pet Supplies</a>
+                <a href="">Shoes</a>
+                <a href="#">Toys & Games</a>
+                <a href="#">Weddings</a>
+            </div>
+            <form class="search-bar">
+                <input type="text" placeholder="Search for items or shops" class="search-input">
+                <button type="submit" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li>
+                    <button class="sign-in"
+                    id="sign-in">Sign in</button>
+                </li>
+                <li class="tooltip">
+                    <a href="favourites.html"><i class="fa-regular fa-heart"></i></a>
+                    <span class="tooltip-text">Favorites</span>
+                </li>
+                <li class="tooltip">
+                    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <span class="tooltip-text">Cart</span>
+                    <span id="cart-count">0</span>
+                </li>
+            </ul>
+        </div>
+            <!-- sign in modal overlay -->
+    <div class="sign-in-modal">
+        <div class="sign-in-modal-overlay">
+            <div class="sign-in-modal-container">
+                <button class="close-sign-in-btn">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+                <div class="sign-in-header">
+                    <h6>sign in</h6>
+                    <button class="register">Register</button>
+                </div>
+                <div class="sign-in-section">
+                    <label for="email address">Email address</label>
+                    <br>
+                    <input type="text">
+                    <br>
+                    <label for="password">Password</label>
+                    <br>
+                    <input type="password">
+                    <div class="forgot-password">
+                        <div>
+                            <input type="checkbox" id="stay-signed-in" style="width: 16px; height: 16px;"/>
+                            <label for="stay-signed-in">Stay signed in</label>
+                        </div>
+                        <div>
+                            <p><a href="forgotpassword.html">Forgot Password</a></p>
+                        </div>
+                    </div>
+                    <button id="sign-in-confirm">Sign in</button>
+                    <div class="trouble-sign-in">
+                        <p><a href="">trouble signing in?</a></p>
+                    </div>
+                </div>
+                <div class="or-container">
+                    <hr class="line" />
+                    <span>OR</span>
+                    <hr class="line" />
+                </div>
+                <div class="continue-with">
+                    <button id="google"><i class="fa-brands fa-google"></i> Continue with Google</button>
+                    <button id="facebook"><i class="fa-brands fa-square-facebook"></i> Continue with Facebook</button>
+                    <button id="apple"> <i class="fa-brands fa-apple"></i> Continue with Apple</button>
+                    <p>By clicking Sign in, Continue with Google, Facebook, or Apple, you agree to Zinora's <a href="">Terms of Use</a> and <a href="">Privacy Policy.</a></p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of sign in modal overlay -->
+    </section>
+    <section class="section-p1" id="cart">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+             <!--    <tr>
+                    <td><button class="delete-btn"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><img src="./img/products/f1.jpg" alt=""></td>
+                    <td>cartoon Astronaut T-shirts</td>
+                    <td class="price">118$</td>
+                    <td class="quantity"><input type="number" value="0" min="0"></td> 
+                    <td class="subtotal">0.00$</td> 
+                </tr>
+                <tr>
+                    <td><button class="delete-btn"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><img src="./img/products/f2.jpg" alt=""></td>
+                    <td>cartoon Astronaut T-shirts</td>
+                    <td class="price">118$</td>
+                    <td class="quantity"><input type="number" value="0" min="0"></td>
+                    <td class="subtotal">0.00$</td>
+                </tr>
+                <tr>
+                    <td><button class="delete-btn"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><img src="./img/products/f3.jpg" alt=""></td>
+                    <td>cartoon Astronaut T-shirts</td>
+                    <td class="price">118$</td>
+                    <td class="quantity"><input type="number" value="0" min="0"></td>
+                    <td class="subtotal">0.00$</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </section>
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter your coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cart-subtotal">0$</td> <!-- This will show the total -->
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td id="shipping-cost">10$</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong id="cart-total">0$</strong></td> <!-- This will show the total -->
+                </tr>
+            </table>
+            <button class="normal">Proceed to checkout</button>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-list">
+            <div class="download">
+                <span>ZINORA</span>
+            </div>
+            <div class="footer-list-items">
+                <ul>
+                    <li>
+                        Shop
+                        <ul>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        Sell
+                        <ul>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        About
+                        <ul>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        Help
+                        <ul>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <a href="">whatever</a>
+                            </li>
+                            <li>
+                                <ul class="social-icons">
+                                    <li><a href="">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </a></li>
+                                    <li><a href="">
+                                        <i class="fa-brands fa-pinterest-p"></i>
+                                    </a></li>
+                                    <li><a href="">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a></li>
+                                    <li><a href="">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </a></li>
+                                    <li><a href="">
+                                        <i class="fa-brands fa-tiktok"></i>
+                                    </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-menu">
+            <div class="address-btn">
+                <button>
+                    <span class="region">
+                        Algeria
+                    </span>
+                    <span class="language">
+                        | English(UK)
+                    </span>
+                    <span class="currency-value cuurency">
+                        | $ (USD)
+                    </span>
+                </button>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>&copy; Zinora</li>
+                    <li><a href="">Terms Of Use</a></li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Local Shops</a></li>
+                    <li><a href="">Regions</a></li>
+                </ul>
+            </div>
+        </div>
+         <!-- modal -->
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <h3>Update your settings</h3>
+            <button class="close-btn">
+                <i class="fa-solid fa-x"></i>
+            </button>
+            <p>Set where you live, what language you speak and the currency you use. <a href="">Learn more.</a></p>
+            <div class="parameters">
+                <label for="">Region:</label>
+                <div class="custom-select-wrapper">
+                    <select id="region" name="region" class="custom-select">
+                        <option value="" disabled selected>Select your wilaya</option>
+        <option value="1">1. Adrar</option>
+        <option value="2">2. Chlef</option>
+        <option value="3">3. Laghouat</option>
+        <option value="4">4. Oum El Bouaghi</option>
+        <option value="5">5. Batna</option>
+        <option value="6">6. Béjaïa</option>
+        <option value="7">7. Biskra</option>
+        <option value="8">8. Béchar</option>
+        <option value="9">9. Blida</option>
+        <option value="10">10. Bouira</option>
+        <option value="11">11. Tamanrasset</option>
+        <option value="12">12. Tébessa</option>
+        <option value="13">13. Tlemcen</option>
+        <option value="14">14. Tiaret</option>
+        <option value="15">15. Tizi Ouzou</option>
+        <option value="16">16. Alger</option>
+        <option value="17">17. Djelfa</option>
+        <option value="18">18. Jijel</option>
+        <option value="19">19. Sétif</option>
+        <option value="20">20. Saïda</option>
+        <option value="21">21. Skikda</option>
+        <option value="22">22. Sidi Bel Abbès</option>
+        <option value="23">23. Annaba</option>
+        <option value="24">24. Guelma</option>
+        <option value="25">25. Constantine</option>
+        <option value="26">26. Médéa</option>
+        <option value="27">27. Mostaganem</option>
+        <option value="28">28. M'Sila</option>
+        <option value="29">29. Mascara</option>
+        <option value="30">30. Ouargla</option>
+        <option value="31">31. Oran</option>
+        <option value="32">32. El Bayadh</option>
+        <option value="33">33. Illizi</option>
+        <option value="34">34. Bordj Bou Arréridj</option>
+        <option value="35">35. Boumerdès</option>
+        <option value="36">36. El Tarf</option>
+        <option value="37">37. Tindouf</option>
+        <option value="38">38. Tissemsilt</option>
+        <option value="39">39. El Oued</option>
+        <option value="40">40. Khenchela</option>
+        <option value="41">41. Souk Ahras</option>
+        <option value="42">42. Tipaza</option>
+        <option value="43">43. Mila</option>
+        <option value="44">44. Aïn Defla</option>
+        <option value="45">45. Naâma</option>
+        <option value="46">46. Aïn Témouchent</option>
+        <option value="47">47. Ghardaïa</option>
+        <option value="48">48. Relizane</option>
+        <option value="49">49. Timimoun</option>
+        <option value="50">50. Bordj Badji Mokhtar</option>
+        <option value="51">51. Ouled Djellal</option>
+        <option value="52">52. Béni Abbès</option>
+        <option value="53">53. In Salah</option>
+        <option value="54">54. In Guezzam</option>
+        <option value="55">55. Touggourt</option>
+        <option value="56">56. Djanet</option>
+        <option value="57">57. El M'Ghair</option>
+        <option value="58">58. El Meniaa</option>
+                    </select>
+                </div>
+                <label for="language">Language:</label>
+                <div class="custom-select-wrapper">
+                    <select id="language" name="language" class="custom-select">
+                        <option value="" disabled selected>Select your language</option>
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="mandarin">Mandarin</option>
+                        <option value="arabic">Arabic</option>
+                    </select>
+                </div>
+
+                <label for="currency">Currency:</label>
+                
+                <div class="custom-select-wrapper">
+                    <select id="currency" name="currency" class="custom-select">
+                        <option value="" disabled selected>Select your currency</option>
+                        <option value="usd">USD - US Dollar</option>
+                        <option value="eur">EUR - Euro</option>
+                        <option value="gbp">GBP - British Pound</option>
+                        <option value="jpy">JPY - Japanese Yen</option>
+                        <option value="aud">AUD - Australian Dollar</option>
+                        <option value="cad">CAD - Canadian Dollar</option>
+                        <option value="chf">CHF - Swiss Franc</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="save-btn">Save</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    </footer>
+</body>
+</html>
