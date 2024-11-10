@@ -1,0 +1,234 @@
+/* General styling for the main section */
+main {
+    width: 100%;
+    max-width: 800px; /* Increased the width */
+    margin: 40px auto;
+    padding: 40px;
+    border: 1px solid #e0d5c4;
+    border-radius: 12px;
+    background-color: #fff;
+  }
+  
+  /* Header styling */
+  .register-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .register-header h3 {
+    margin: 0;
+    font-size: 2rem;
+    color: #4b2e2a;
+  }
+  
+  .register-header p {
+    font-size: 1rem;
+    color: #7a5c55;
+  }
+  
+  .register-header a {
+    color: #8b5e3c;
+    text-decoration: underline;
+  }
+  
+  
+  /* Input fields styling */
+  .register-details {
+    margin-bottom: 25px;
+  }
+  
+  .name-fields {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .field {
+    flex: 1;
+  }
+  
+  .register-details label {
+    display: block;
+    font-size: 1rem;
+    color: #5a423b;
+    margin-bottom: 8px;
+  }
+  
+  .register-details input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d4c1b2;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: #faf8f6;
+  }
+  
+  .register-details input:focus {
+    outline: none;
+    border-color: #a0755f;
+    background-color: #f0ebe5;
+  }
+  
+  /* Marketing Preferences styling */
+  .marketing-preferences {
+    border-top: 1px solid #e0d5c4;
+    padding-top: 20px;
+    margin-bottom: 25px;
+  }
+  
+  .preference-item {
+    border: 1px solid #d4c1b2;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .preference-item label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: #5a423b;
+    cursor: pointer;
+  }
+  
+  .preference-item span {
+    font-size: 1.2rem;
+    display: block;
+  }
+  
+  .preference-item input[type="checkbox"] {
+    accent-color: #a0755f;
+    margin-left: 10px;
+  }
+  
+  .preference-item p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #7a5c55;
+  }
+  
+  .preference-item .small-text {
+    font-size: 0.8rem;
+    color: #9c7d6a;
+  }
+  
+  /* Terms and Policy section styling */
+  .terms {
+    display: inline-flex; /* Ensures that the terms and link are inline */
+    text-align: left;
+    font-size: 0.9rem;
+    color: #6b4f4b;
+    margin-bottom: 30px;
+    gap: 5px;
+  }
+  
+  .terms a {
+    color: #8b5e3c;
+    text-decoration: underline;
+  }
+  
+  /* Ensure anchor tags are inline */
+  .terms p {
+    display: inline;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .terms a {
+    display: inline; /* Ensures anchor tags stay inline */
+    margin: 0;
+  }
+  
+  /* Fix inline issue for Marketing Preferences section */
+  .marketing-preferences p {
+    display: inline;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .marketing-preferences a {
+    display: inline;
+    margin: 0;
+    text-decoration: underline;
+  }
+  
+  .marketing-preferences .preference-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .marketing-preferences .preference-item .small-text {
+    font-size: 0.8rem;
+    color: #9c7d6a;
+  }
+  
+  /* Button styling */
+  .register-btn {
+    text-align: center;
+  }
+  
+  .register-btn button {
+    width: 100%;
+    background-color: #a0755f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-btn button:hover {
+    background-color: #8b5e3c;
+  }
+  
+  /* Ensure checkbox and text alignment is correct */
+  .preference-item input[type="checkbox"] {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Adjust spacing for checkbox and text alignment */
+  .preference-item .small-text {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #9c7d6a;
+  }
+
+
+  .password-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .password-container input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px; /* Make room for the eye icon */
+    border: 1px solid #d4c1b2;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: #faf8f6;
+  }
+  
+  .password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%); /* This ensures the icon is centered vertically */
+    cursor: pointer;
+    color: #a0755f;
+    font-size: 1.2rem;
+  }
+  

@@ -1,0 +1,559 @@
+/* Default (Desktop and larger screens) */
+.shop-header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    justify-content: space-between; /* Ensures details are on the left, background on the right */
+}
+
+.shop-background-image img {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* Small Screens (e.g., tablets and phones) */
+@media (max-width: 768px) {
+    .shop-header {
+        position: relative;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .shop-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .shop-background-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5; /* Slight transparency for better readability */
+    }
+
+    .shop-details {
+        position: relative;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.5); 
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 600px;
+    }
+}
+
+
+
+/* Basic container styles */
+main {
+display: flex;
+width: 100%;
+}
+.sidebar-container {
+    max-width: 1200px;
+    display: flex;
+    font-size: 12px;
+    flex: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    padding: 15px;
+    border-right: 1px solid black;
+    position: relative;
+    transition: transform 0.3s ease;
+    z-index: 1;
+    overflow-y: auto;
+    height: 100%;
+}
+/* Style the scrollbar itself */
+.sidebar::-webkit-scrollbar {
+    width: 6px;  /* Set the width of the scrollbar */
+}
+
+/* Style the track (the background of the scrollbar) */
+.sidebar::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px; 
+}
+
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #aaaaaa;
+    border-radius: 10px; 
+    transition: background-color 0.3s ease; 
+}
+
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+
+.sidebar::-webkit-scrollbar-corner {
+    background-color: transparent; 
+}
+
+.sidebar-content .sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.widget {
+    margin-bottom: 20px;
+}
+
+.summary {
+    cursor: pointer;
+    font-size: 15px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.summary label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.summary label span {
+    font-weight: 500;
+}
+
+.summary label i {
+    margin-left: auto;
+    transition: transform 0.3s;
+    color: #777;
+}
+
+.summary input[type="checkbox"] {
+    display: none; /* Hide checkbox */
+}
+
+.summary input[type="checkbox"]:checked + .filter-group label i {
+    transform: rotate(180deg);
+}
+
+/* Filter group styling */
+.filter-group {
+    padding-top: 5px;
+}
+
+.accord {
+    display: none; /* Hide accord by default */
+    padding: 8px 0 0 15px; /* Indent for hierarchy */
+}
+
+.summary input[type="checkbox"]:checked + .filter-group .accord {
+    display: flex; /* Show accord when checkbox is checked */
+    flex-wrap: wrap;
+    gap: 5px; /* Space between items */
+}
+
+/* Product size and colors button styles */
+.product-size button {
+    border: 1px solid black;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.product-colors button {
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
+    border-radius: 3px;
+}
+
+.product-size button:hover {
+    background-color: #d0d0d0;
+}
+
+.product-colors button:hover {
+    border: 3px double white;
+}
+
+.product-colors .tosca { background-color: #008080; }
+.product-colors .brown { background-color: #8B4513; }
+.product-colors .ocena { background-color: #1E90FF; }
+
+.product-colors button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+/* Close button styling */
+.close-trigger {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    background-color: transparent;
+}
+.close-trigger:hover {
+    background-color: transparent;
+}
+
+/* Main content styling */
+.category-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .sidebar-container {
+        display: block;
+    }
+
+    .sidebar {
+        width: 40%; /* Sidebar takes up half the screen */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: white;
+        transform: translateX(-100%); /* Move it off-screen by default */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        border: none;
+        z-index: 2;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .close-trigger {
+        display: inline-block;
+    }
+
+    .category-content {
+        margin-left: 0;
+    }
+}
+
+/* Price filter styles */
+.price-filter {
+    margin-top: 10px; /* Space above the filter group */
+}
+
+.price-filter label {
+    display: block; /* Ensure labels stack vertically */
+    margin: 5px 0; /* Space between labels and inputs */
+}
+
+.price-input {
+    display: flex;
+    align-items: center; /* Center align items */
+}
+
+.price-filter input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 80%; /* Make input fields 80% width */
+}
+
+.price-filter .currency {
+    margin-left: 5px; /* Space between input and currency symbol */
+}
+
+.apply-price-filter {
+    background-color: rgb(164, 119, 52); /* Customize button color */
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    width: 100%; /* Make button full width */
+    letter-spacing: 1px;
+}
+
+.apply-price-filter:hover {
+    background-color: rgba(164, 117, 47, 0.767); /* Darker shade for hover */
+}
+
+
+.main-section {
+    flex: 2;
+    padding: 1rem;
+    background-color: white; /* Light background for contrast */
+    position: relative;
+}
+/* Main Section Header */
+.main-section-header {
+    display: flex;
+    justify-content: space-between; /* Align items to the ends */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px; /* Space below the header */
+    padding: 0 4rem 0 1rem;
+}
+
+.showing-results p {
+    font-size: 16px; /* Font size for the showing results text */
+    color: #555; /* Slightly darker color for readability */
+}
+
+.filter-part {
+    display: flex; /* Flex container for the filter section */
+    align-items: center; /* Center vertically */
+}
+
+.filters {
+    margin-left: 20px; /* Space between the showing results and filter */
+}
+
+.filters label {
+    font-size: 14px; /* Font size for the filter label */
+    margin-right: 10px; /* Space between label and select */
+    color: #333; /* Dark color for better visibility */
+}
+
+.filter-options select {
+    padding: 8px; /* Increased padding for a better look */
+    border: none; /* Remove border */
+    border-radius: 3px; /* Rounded corners */
+    background-color: #fff; /* White background for the select */
+    font-size: 14px; /* Font size for the select options */
+    cursor: pointer; /* Change cursor to pointer for select */
+    width: 150px; /* Set a specific width for the select bar */
+}
+
+
+  
+  /* Main Section Articles */
+  .main-section-articles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Products Container */
+  .products-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of cards */
+    justify-content: flex-start; /* Centers the items within the container */
+    gap: 10px; /* Space between cards */
+    width: 100%;
+  }
+  
+  /* Product Card Styles */
+  .product-card {
+    flex: 1 1 230px; /* Card takes up at least 250px and can grow if space allows */
+    max-width: 230px; /* Ensures cards don't exceed this width */
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  
+  /* Image Container Styles */
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  
+  /* Icon Styles */
+  .product-card .icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .product-card .icons i {
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .product-card .icons i:hover {
+    background-color: var(--primary);
+  }
+  
+  .favorite-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc; /* Empty heart color (light gray, for regular) */
+}
+.favorite-icon:hover {
+    color: #ff6b6b; /* Red color on hover */
+}
+
+/* When the heart is in "filled" state (solid red heart) */
+.favorite-icon.fas {
+    color: #ff6b6b; /* Solid red heart */
+}
+
+/* When the heart is in "empty" state (regular heart) */
+.favorite-icon.far {
+    color: #ccc; /* Empty heart color (light gray) */
+}
+  
+  /* Product Info Styles */
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .product-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 1024px) {
+    .products-container {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-card {
+      flex: 1 1 200px; /* Adjust card width for tablets */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-card {
+      flex: 1 1 180px; /* Adjust card width for mobile */
+    }
+  }
+  
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .filter-part {
+        margin-top: 10px; /* Space between header and filter */
+    }
+
+    .main-section-articles {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust grid for smaller screens */
+    }
+}
+
+.show-more {
+    text-align: center;
+    padding: 1rem;
+}
+.show-more-btn {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+.show-more-btn:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+}
+
+
+#filterBtn {
+    display: none;
+    border-radius: 50%;
+    position: fixed; /* Make the button sticky initially */
+    bottom: 5rem;
+    left: 50px;
+    background-color: rgba(158, 95, 0, 0.651);
+    color: rgba(0, 0, 0, 0.63);
+    z-index: 1;
+}
+@media (max-width: 768px) {
+    #filterBtn {
+        display: block;
+    }
+}
+
+
+.notification {
+    position: fixed;
+    bottom: -50px; /* Start position off-screen from the bottom */
+    right: 20px;
+    background-color: #8B4513; /* Brown color */
+    color: white;
+    padding: 10px 15px; /* Adjusted padding */
+    border-radius: 5px;
+    font-size: 14px; /* Slightly bigger text */
+    opacity: 0;
+    visibility: hidden;
+    transition: bottom 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    max-width: 200px;
+    height: 40px; /* Set a specific height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.notification.show {
+    bottom: 20px; /* Position when visible (slide up) */
+    opacity: 1;
+    visibility: visible;
+}
+
