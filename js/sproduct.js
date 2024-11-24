@@ -44,58 +44,68 @@ navClose.addEventListener('click', function () {
 
 
 
-// single product
-const smallImages = document.querySelectorAll('.small-img-col'); 
-const mainImage = document.getElementById('mainImg');
-const prevButton = document.querySelector('.prev-img'); // Select the previous button
-const nextButton = document.querySelector('.next-img'); // Select the next button
 
-let currentIndex = 0;
 
-// Function to update the main image and active state
-function updateMainImage(index) {
-    // Get the new source from the clicked image's data-image
-    const newSrc = smallImages[index].querySelector('img').getAttribute('data-image');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const smallImgContainer = document.querySelector('.small-img-groupe');
+    const smallImages = document.querySelectorAll('.small-img-col');
+    const mainImage = document.getElementById('mainImg');
+    const prevButton = document.querySelector('.prev-img');
+    const nextButton = document.querySelector('.next-img');
     
-    // Update the main image
-    mainImage.src = newSrc;
+    if (!smallImages.length) {
+        console.error('No small images found!');
+        return;
+    }
 
-    // Remove the 'active' class from all small image columns
-    smallImages.forEach(col => {
-        col.classList.remove('active');
+    let currentIndex = 0;  // Initialize at 0, or any valid index.
+
+    // Function to update the main image
+    function updateMainImage(index) {
+        // Ensure smallImages is re-queried for the most up-to-date DOM state
+        const smallImages = document.querySelectorAll('.small-img-col');
+        const smallImage = smallImages[index];
+
+        if (!smallImage) {
+            console.error(`smallImages[${index}] is undefined!`);
+            return;
+        }
+
+        const newSrc = smallImage.querySelector('img').getAttribute('data-image');
+        mainImage.src = newSrc;
+
+        // Remove active class from all small image columns
+        smallImages.forEach(col => col.classList.remove('active'));
+
+        // Add the active class to the current small image column
+        smallImage.classList.add('active');
+    }
+
+    // Event listener for each small image column
+    smallImages.forEach((smallImgCol, index) => {
+        smallImgCol.addEventListener('click', () => {
+            currentIndex = index;
+            updateMainImage(currentIndex);
+        });
     });
 
-    // Add the 'active' class to the current small image column
-    smallImages[index].classList.add('active');
-}
-
-// Add event listeners to each small image column
-smallImages.forEach((smallImgCol, index) => {
-    smallImgCol.addEventListener('click', () => {
-        currentIndex = index; // Update the current index to the clicked image's index
+    // Event listener for the previous button
+    prevButton.addEventListener('click', () => {
+        // Move to the previous image or loop to the last image if at the first one
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : smallImages.length - 1;
         updateMainImage(currentIndex);
     });
-});
 
+    // Event listener for the next button
+    nextButton.addEventListener('click', () => {
+        // Move to the next image or loop to the first image if at the last one
+        currentIndex = (currentIndex < smallImages.length - 1) ? currentIndex + 1 : 0;
+        updateMainImage(currentIndex);
+    });
 
-// Event listener for the previous button
-prevButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--; // Decrement index if not at the first image
-    } else {
-        currentIndex = smallImages.length - 1; // Loop back to the last image
-    }
-    updateMainImage(currentIndex); // Update the main image
-});
-
-// Event listener for the next button
-nextButton.addEventListener('click', () => {
-    if (currentIndex < smallImages.length - 1) {
-        currentIndex++; // Increment index if not at the last image
-    } else {
-        currentIndex = 0; // Loop back to the first image
-    }
-    updateMainImage(currentIndex); // Update the main image
+    // Initialize the first image
+    updateMainImage(currentIndex);
 });
 
 
@@ -401,28 +411,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure only one event listener is added
     if (addToBasketBtn) {
         addToBasketBtn.addEventListener('click', () => {
-            const productDetails = {
+/*             const productDetails = {
                 name: "woman dress",
-                img: "./img/women/dresses/f1.jpeg",
+                img: "/img/women/dresses/d1.jpg",
                 price: 118.00,
-                quantity: 1 // You can make this dynamic based on user input
-            };
+                quantity: 1
+            }; */
         
-            // Get existing cart items from localStorage
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let cartItems = JSON.parse(localStorage.getItem('selectedProduct')) || [];
             console.log("Before adding:", cartItems.length);
         
             // Check if the item is already in the cart
-            const itemExists = cartItems.some(item => item.name === productDetails.name);
+            const itemExists = cartItems.some(product => product.name === JSON.parse(product).name);
             
             if (itemExists) {
                 showNotification('Item already in cart!');
             } else {
                 // Add the new product to the cart items
-                cartItems.push(productDetails);
+                cartItems.push(cartItems);
         
                 // Save updated cart items back to localStorage
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem('selectedProduct', JSON.stringify(cartItems));
                 
                 updateCartItemCount(); // Update cart count only after adding the item
                 showNotification('Item added to cart!'); // Optional feedback to the user
@@ -454,16 +463,94 @@ document.querySelectorAll(".tab-link").forEach(button => {
 document.querySelector(".tab-link[data-tab='details']").click();
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    const sizeOptions = document.querySelectorAll('.size-option');
+    // Retrieve the product data from local storage
+    const productData = JSON.parse(localStorage.getItem('selectedProduct'));
 
-    sizeOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            // Remove 'selected' class from all options
-            sizeOptions.forEach(opt => opt.classList.remove('selected'));
-            // Add 'selected' class to the clicked option
-            option.classList.add('selected');
+    if (productData) {
+        // Update the main product details
+        document.querySelector('#prodetails h2').textContent = productData.name;
+        document.querySelector('.new-price').textContent = `$${productData.price}`;
+        document.querySelector('#mainImg').src = productData.img;
+        document.querySelector('.collapsible-text p').textContent = `Rating: ${productData.rating} stars`;
+
+        // Update the small images container
+        const smallImgContainer = document.querySelector('.small-img-groupe');
+        smallImgContainer.innerHTML = ''; // Clear any existing small images
+
+        // Dynamically create small images
+        productData.smallImages.forEach(imgSrc => {
+            const imgCol = document.createElement("div");
+            imgCol.classList.add("small-img-col");
+
+            const imgElement = document.createElement("img");
+            imgElement.src = imgSrc;
+            imgElement.classList.add("small-img");
+            imgElement.alt = "";
+            imgElement.setAttribute("data-image", imgSrc);
+
+            imgCol.appendChild(imgElement);
+            smallImgContainer.appendChild(imgCol);
         });
-    });
+
+        // Now re-query the small images container after adding them to the DOM
+        const smallImages = document.querySelectorAll('.small-img-col');
+        const mainImage = document.getElementById('mainImg');
+        const prevButton = document.querySelector('.prev-img');
+        const nextButton = document.querySelector('.next-img');
+
+        let currentIndex = 0;
+
+        // Function to update the main image and active state
+        function updateMainImage(index) {
+            // Ensure the small image exists
+            const smallImage = smallImages[index];
+            if (!smallImage) {
+                console.error(`smallImages[${index}] is undefined!`);
+                return;
+            }
+
+            // Get the new source from the clicked image's data-image
+            const newSrc = smallImage.querySelector('img').getAttribute('data-image');
+            
+            // Update the main image
+            mainImage.src = newSrc;
+
+            // Remove the 'active' class from all small image columns
+            smallImages.forEach(col => col.classList.remove('active'));
+
+            // Add the 'active' class to the current small image column
+            smallImage.classList.add('active');
+        }
+
+        // Add event listeners to each small image column
+        smallImages.forEach((smallImgCol, index) => {
+            smallImgCol.addEventListener('click', () => {
+                currentIndex = index; // Update the current index to the clicked image's index
+                updateMainImage(currentIndex);
+            });
+        });
+
+        // Event listener for the previous button
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--; // Decrement index if not at the first image
+            } else {
+                currentIndex = smallImages.length - 1; // Loop back to the last image
+            }
+            updateMainImage(currentIndex); // Update the main image
+        });
+
+        // Event listener for the next button
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < smallImages.length - 1) {
+                currentIndex++; // Increment index if not at the last image
+            } else {
+                currentIndex = 0; // Loop back to the first image
+            }
+            updateMainImage(currentIndex); // Update the main image
+        });
+    } else {
+        console.error('No product data found');
+    }
 });
