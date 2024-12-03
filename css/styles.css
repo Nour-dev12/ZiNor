@@ -67,7 +67,15 @@ a {
 .section-p1 {
   padding: 40px 80px;
 }
+.section-p2 {
+  padding: 40px 80px;
+}
 
+@media (max-width: 768px){
+    .section-p2 {
+        padding: 40px 10px;
+      }
+}
 .section-m1 {
   margin: 40px 0;
 }
